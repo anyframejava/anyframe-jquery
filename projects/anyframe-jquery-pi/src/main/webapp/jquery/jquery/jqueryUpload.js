@@ -30,7 +30,7 @@
 		//html += '<input type="hidden" id="fileDir" name="fileDir"/>\n';
 		html += '<div id="buttons" align="right" style="padding-top:5px">\n'; 
 		html += '<input type="file" id="uploadify" name="uploadify" width="80"/>\n';
-		html += '<img id="uploadClearButton" src="' + options.contextRoot + '/jquery/image/clear.jpg" width="57" height="24" border="0" style="padding-bottom:1px;cursor:pointer;" />\n';
+		html += '<img id="uploadClearButton" src="' + options.contextRoot + '/jquery/image/clear.jpg" width="57" height="24" border="0" style="padding-bottom:1px;cursor:pointer;vertical-align:bottom;" />\n';
 		html += '</div>\n';
 		html += '<div id="fileQueue" style="width:100%;"></div>\n';
 		$('#' + id).append(html);

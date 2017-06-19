@@ -28,8 +28,6 @@ import javax.persistence.Table;
  * @author Alex, Eum
  *
  */
-@Entity
-@Table(name = "JQUERY_ATTACHED")
 public class Attached implements Serializable {
     private static final long serialVersionUID = 1L;
     private String id;
@@ -65,8 +63,6 @@ public class Attached implements Serializable {
 		this.ext = ext;
 	}
 
-	@Id
-    @Column(name = "ID", unique = true, nullable = false, length = 50)
     public String getId() {
         return this.id;
     }
@@ -75,7 +71,6 @@ public class Attached implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "NAME")
     public String getName() {
         return this.name;
     }
@@ -84,7 +79,6 @@ public class Attached implements Serializable {
         this.name = name;
     }
 
-    @Column(name = "REF_ID", nullable = false, length = 50)
     public String getRefId() {
         return this.refId;
     }
@@ -93,7 +87,6 @@ public class Attached implements Serializable {
         this.refId = refId;
     }
 
-    @Column(name = "FILE_SIZE", precision = 22, scale = 0)
     public Long getFileSize() {
         return this.fileSize;
     }

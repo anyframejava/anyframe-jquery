@@ -25,6 +25,7 @@ import java.util.List;
  *   정렬된 결과를 리턴한다.
  *   각 노드의 depth도 계산하여 리턴한다.
  * </pre>
+ * @author Alex, Eum
  */
 public class Tree {
 	@SuppressWarnings("unchecked")

@@ -32,7 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
  * This UploadController class is a Controller class 
  * to provide file upload functionality.
  * 
- * @author arumb-laptop
+ * @author Alex, Eum
  *
  */
 @Controller

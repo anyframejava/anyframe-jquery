@@ -26,6 +26,7 @@ import java.util.List;
  *   TreeNode는 자신의 하위 TreeNode를 여러개 가질 수 있다.
  *   TreeNode의 depth는 1부터 계산된다.
  * </pre>
+ * @author Alex, Eum
  */
 public class TreeNode {
 

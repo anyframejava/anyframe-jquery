@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<plugin name="jquery" description="anyframe-jquery-pi plugin">
+<plugin name="jquery" description="jQuery Plugin consists of sample code, libraries and configurations needed to use jquery with Anyframe.">
   <groupId>org.anyframe.plugin</groupId>
   <artifactId>anyframe-jquery-pi</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <dependent-plugins>
     <dependent-plugin name="query" version="2.0.0&gt;*"/>
   </dependent-plugins>
@@ -12,6 +12,7 @@
     </resource>
     <resource dir="src/main/resources" filtered="true" packaged="false">
       <include name="**/*.xml"/>
+	  <include name="**/*.properties"/>
     </resource>
     <resource dir="src/test/java" filtered="true" packaged="true">
       <include name="**/*.java"/>
@@ -39,6 +40,7 @@
       </fileset>
       <fileset dir="src/main/resources" filtered="true" packaged="false">
         <include name="**/*jquery*.xml"/>
+		<include name="**/*jquery*.properties"/>
       </fileset>
       <fileset dir="src/test/java" filtered="true" packaged="true">
         <include name="**/org/anyframe/plugin/jquery/**/*.java"/>

@@ -28,7 +28,7 @@ import org.springframework.stereotype.Repository;
 /**
  * This class is a DAO class to provide file upload functionality.
  * 
- * @author arumb-laptop
+ * @author Alex, Eum
  *
  */
 @Repository("jqueryUploadInfoDao")

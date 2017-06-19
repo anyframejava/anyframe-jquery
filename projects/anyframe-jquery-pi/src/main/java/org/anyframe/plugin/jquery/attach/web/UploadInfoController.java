@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * This UploadInfoController class is a Controller class 
  * to provide file upload functionality.
  * 
- * @author arumb-laptop
+ * @author Alex, Eum
  *
  */
 @Controller

@@ -4,11 +4,11 @@
 
 <div class="grid_searchForm">
 	<select id="${gridId}_searchCondition">
-		<option value="title"><spring:message code="board.title" /></option>
-		<option value="contents"><spring:message code="board.contents" /></option>
+		<option value="title"><spring:message code="jquery.board.title" /></option>
+		<option value="contents"><spring:message code="jquery.board.contents" /></option>
 	</select>
 	<input type="text" name="grid_searchKeyword" id="${gridId}_searchKeyword" maxlength="50"/>
-	<img id="${gridId}_btnSearch" class="btnSearch" width="25" height="18" border="0" align="middle" src="${ctx}/sample/images/btn_search.png">
+	<img id="${gridId}_btnSearch" class="btnSearch" width="25" height="18" border="0" align="middle" src="${ctx}/sample/images/btn_search_i.gif">
 </div>
 <form:form method="post" id="${gridId}_searchForm" name="${gridId}Form">
 	<!-- jqGrid -->

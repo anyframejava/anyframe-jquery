@@ -49,7 +49,7 @@
 			<!--Velocity-Support-dynamicFindJqueryCommunityList-END-->
 			<!--jquery-findJqueryCommunityList-END-->
 		</statement>
-		<result class="org.anyframe.plugin.jquery.domain.Community">		
+		<result class="org.anyframe.plugin.jquery.domain.JqueryCommunity">		
 		</result>				
 	</query>
 	
@@ -97,7 +97,7 @@
 				CATEGORY_ID = :vo.searchKeyword		
 			order by COMMUNITY_ID DESC
 		</statement>
-		<result class="org.anyframe.plugin.jquery.domain.Community">		
+		<result class="org.anyframe.plugin.jquery.domain.JqueryCommunity">		
 		</result>				
 	</query>
 	<query id="findJqueryCommunityByPk" isDynamic="true">
@@ -114,7 +114,7 @@
 			WHERE 
 				COMMUNITY_ID = :vo.communityId		
 		</statement>
-		<result class="org.anyframe.plugin.jquery.domain.Community">		
+		<result class="org.anyframe.plugin.jquery.domain.JqueryCommunity">		
 		</result>				
 	</query>
 	<query id="removeJqueryCommunity">

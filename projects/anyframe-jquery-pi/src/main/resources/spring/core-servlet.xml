@@ -9,7 +9,7 @@
 
 	<anyframe:annotation-driven	synchronizeOnSession="true" />
 
-	<context:component-scan base-package="org.anyframe.plugin.jquery"
+	<context:component-scan base-package="org.anyframe.plugin"
 		use-default-filters="false">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
@@ -20,7 +20,7 @@
 	</bean>
 
 	<bean id="exceptionResolver"
-		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		class="org.anyframe.plugin.common.MovieFinderExceptionResolver">
 		<property name="defaultErrorView" value="forward:/sample/common/error.jsp" />
 	</bean>
 
@@ -32,7 +32,7 @@
 
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-		<property name="defaultLocale" value="ko_KR" />
+		<property name="defaultLocale" value="en_US" />
 	</bean>
 
 </beans>

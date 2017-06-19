@@ -110,7 +110,7 @@
 				<!--Velocity-Support-dynamicFindJqueryBoardList-END-->
 			<!--jquery-updateJqueryBoard-END-->
 			</statement>
-			<result class="org.anyframe.plugin.jquery.domain.Board">		
+			<result class="org.anyframe.plugin.jquery.domain.JqueryBoard">		
 			</result>				
 		</query>
 		<query id="findJqueryBoardByPk" isDynamic="true">
@@ -125,7 +125,7 @@
 				FROM JQUERY_BOARD board
 				WHERE board.POST_ID =:vo.postId
 			</statement>
-			<result class="org.anyframe.plugin.jquery.domain.Board">		
+			<result class="org.anyframe.plugin.jquery.domain.JqueryBoard">		
 			</result>				
 		</query>
   	</queries>

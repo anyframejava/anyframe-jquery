@@ -31,7 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * This class is a Implementation class to provide file upload functionality.
  * 
- * @author arumb-laptop
+ * @author Alex, Eum
  *
  */
 @Service("jqueryUploadInfoService")

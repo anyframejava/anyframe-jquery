@@ -22,7 +22,7 @@ import org.anyframe.plugin.jquery.domain.Attached;
 /**
  * This class is a Interface class to provide file upload functionality.
  * 
- * @author arumb-laptop
+ * @author Alex, Eum
  *
  */
 public interface UploadInfoService {

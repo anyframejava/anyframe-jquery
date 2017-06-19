@@ -1,15 +1,12 @@
-<%@ page language="java" errorPage="/sample/common/error.jsp"
-	pageEncoding="UTF-8" contentType="text/html;charset=utf-8"%>
-<%@ include file="/sample/common/taglibs.jsp"%>
+<%@ page language="java" errorPage="/sample/common/error.jsp" pageEncoding="UTF-8" contentType="text/html;charset=utf-8" %>
+<%@ include file="/sample/common/top.jsp"%>
+		<div class="location"><a href="<c:url value='/anyframe.jsp'/>">Home</a> &gt; <a href="<c:url value='/jqueryBoard.do?method=tabMain'/>">jQuery 1.0.1</a></div>
+    </div>
+    <hr />
 <%
 	session.setAttribute("regId", "test.lee");
 %>
 <c:set var="treeId" value="tree"/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html140/DTD/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Anyframe Jquery Plugin Sample</title>
 
 <!-- for jquery -->
 <script type="text/javascript" src="<c:url value='/jquery/jquery/jquery-1.6.2.min.js'/>"></script>
@@ -209,7 +206,7 @@ function createContextMenu(node) {
 	if(node.attr('id') == 'ROOT') {
 		default_object = {
 			create : {
-				label : '<spring:message code="category.context.add" />',
+				label : '<spring:message code="jquery.category.context.add" />',
 				action : function(obj) {
 					logger.log('create category : ' + obj.attr('id'));
 					openCategoryForm(obj, 'create');
@@ -221,21 +218,21 @@ function createContextMenu(node) {
 	}else if(node.attr('rel') == 'CA') {
 		default_object = {
 			create : {
-				label : '<spring:message code="community.context.add" />',
+				label : '<spring:message code="jquery.community.context.add" />',
 				action : function(obj) {
 					logger.log('create community : ' + obj.attr('id'));
 					openCommunityForm(obj, 'create');
 				}
 			},
 			edit : {
-				label : '<spring:message code="category.context.edit" />',
+				label : '<spring:message code="jquery.category.context.edit" />',
 				action : function(obj) {
 					logger.log('edit category : ' + obj.attr('id'));
 					openCategoryForm(obj, 'edit');
 				}
 			},
 			remove : {
-				label : '<spring:message code="category.context.delete" />',
+				label : '<spring:message code="jquery.category.context.delete" />',
 				_disabled : node.children('ul').length > 0 ? true : false,
 				action : function(obj) {
 					logger.log('remove category : ' + obj.attr('id'));
@@ -251,14 +248,14 @@ function createContextMenu(node) {
 		default_object = {
 			create : false,
 			edit : {
-				label : '<spring:message code="community.context.edit" />',
+				label : '<spring:message code="jquery.community.context.edit" />',
 				action : function(obj) {
 					logger.log('edit community : ' + obj.attr('id'));
 					openCommunityForm(obj, 'edit');
 				}
 			},
 			remove : {
-				label : '<spring:message code="community.context.delete" />',
+				label : '<spring:message code="jquery.community.context.delete" />',
 				action : function(obj) {
 					logger.log('remove community : ' + obj.attr('id'));
 					if(this.is_selected(obj)) { 
@@ -283,7 +280,8 @@ $(document).ready(function() {
    		'themes' : {
    			'theme' : 'default',
    			'dots' : false,
-   			'icons' : true
+   			'icons' : true,
+   			'url': "jquery/jquery/jstree/themes/default/style.css"
 		},
 		'contextmenu' : {
 			'items' : createContextMenu
@@ -460,8 +458,8 @@ function savePost() {
 	logger.log('refId=' + AnyframeUpload.options.refId);
 	var gridId = '#grid_' + _currentTabId;
 	
-	if(!$('#dialog-form').valid()) {
-		logger.log('dialog-form is invalid.');
+	if(!$('#board-form').valid()) {
+		logger.log('board-form is invalid.');
 		return false;
 	}
 	if(dialogMode == "add"){
@@ -469,20 +467,20 @@ function savePost() {
 		//create url call
 		$.post(
 			"<c:url value='/jqueryBoard.do?method=create'/>", 
-			$("#dialog-form").serialize(), 
+			$("#board-form").serialize(), 
 			function(data) {
 				logger.log('reload grid : ' + gridId);
 				$(gridId).trigger("reloadGrid");
-				$("#dialog-form").dialog("close");
+				$("#board-form").dialog("close");
 			});
 	}else if(dialogMode == "edit"){
 		//update url call
 		$.post(
 	    	"<c:url value='/jqueryBoard.do?method=update'/>", 
-	    	$("#dialog-form").serialize(), 
+	    	$("#board-form").serialize(), 
 	    	function(data) {
 	    		$(gridId).trigger("reloadGrid");
-	    		$("#dialog-form").dialog("close"); 
+	    		$("#board-form").dialog("close"); 
 	    	});
 	}else{
 		logger.log('dialogMode is invalid : ' + dialogMode);
@@ -491,9 +489,9 @@ function savePost() {
 
 $(document).ready(function(){
 
-	$('#dialog-form').validate();
+	$('#board-form').validate();
 	
-	$("#dialog-form").dialog({
+	$("#board-form").dialog({
 		autoOpen: false,
 		width: 400,
 		height:"auto",
@@ -505,7 +503,7 @@ $(document).ready(function(){
 				upload();//file upload first
 			},
 			'<spring:message code="jquery.dialog.btn.cancel" />': function() {
-				$( "#dialog-form" ).dialog( "close" );
+				$( "#board-form" ).dialog( "close" );
 			}
 		},
 		close: function() {
@@ -526,9 +524,9 @@ function _createGridType1(id) {
 		mtype:'POST',
 		datatype : "json",
 		postData : {'communityId' : id, 'searchKeyword' : '', 'searchCondition' : ''},
-		colNames : [ '<spring:message code="board.id" />', '<spring:message code="category.name" />', '<spring:message code="board.title" />', 
-		             '<spring:message code="board.contents" />', '<spring:message code="board.regId" />', 
-		             '<spring:message code="board.regDate" />', '<spring:message code="community.id" />'],
+		colNames : [ '<spring:message code="jquery.board.id" />', '<spring:message code="jquery.category.name" />', '<spring:message code="jquery.board.title" />', 
+		             '<spring:message code="jquery.board.contents" />', '<spring:message code="jquery.board.regId" />', 
+		             '<spring:message code="jquery.board.regDate" />', '<spring:message code="jquery.community.id" />'],
 		jsonReader: {repeatitems: false},
 		colModel : [ 
 			{key : true, name : 'postId', editable:false, hidden:true}, 
@@ -571,13 +569,13 @@ function _createGridType1(id) {
 	$(gridId + "_btnAdd").click(function() { 
 		dialogMode = "add";
 		AnyframeUpload.options.refId = '';
-		$("#dialog-form").dialog( "open" );
+		$("#board-form").dialog( "open" );
 	});
 
 	$(gridId + "_btnEdit").click(function() { 
 		var rowNum = $(gridId).jqGrid('getGridParam','selrow');
 		if(rowNum == null || rowNum == ""){
-			alert('<spring:message code="board.msg.delete.alert" />');
+			alert('<spring:message code="jquery.board.msg.delete.alert" />');
 		}else{
 			dialogMode = "edit";
 			$.post(
@@ -593,7 +591,7 @@ function _createGridType1(id) {
 			    	   AnyframeUpload.options.refId = data.board.postId;
 			    	   AnyframeUpload.loadAttachedFileList('uploadPane');
 			    	   
-			    	   $( "#dialog-form" ).dialog( "open" );
+			    	   $( "#board-form" ).dialog( "open" );
 		     }); 
 		}
 	});
@@ -603,7 +601,7 @@ function _createGridType1(id) {
 		var postId = $(gridId).getCell(rowNum, 'postId');
 		$(gridId).delGridRow( rowNum, {
 			reloadAfterSubmit:true,
-			msg:'<spring:message code="board.msg.delete.confirm" />',
+			msg:'<spring:message code="jquery.board.msg.delete.confirm" />',
 			delData:{postId: postId},
 			url:"<c:url value='/jqueryBoard.do?method=remove'/>"
 		});
@@ -677,8 +675,8 @@ function _createGridType2(id) {
 		mtype:'POST',
 		datatype : "json",
 		postData : {'categoryId' : id},
-		colNames : ['<spring:message code="community.id" />','<spring:message code="community" /> <spring:message code="community.name" />', '<spring:message code="community.desc" />', 
-		            '<spring:message code="community.redId" />', '<spring:message code="community.regDate" />', '<spring:message code="category.id" />', '<spring:message code="category.name" />',''],
+		colNames : ['<spring:message code="jquery.community.id" />','<spring:message code="jquery.community" /> <spring:message code="jquery.community.name" />', '<spring:message code="jquery.community.desc" />', 
+		            '<spring:message code="jquery.community.redId" />', '<spring:message code="jquery.community.regDate" />', '<spring:message code="jquery.category.id" />', '<spring:message code="jquery.category.name" />',''],
 		jsonReader: {repeatitems: false},
 		colModel : [ 
 		{key : true, name : 'communityId', editable:false, hidden:true}, 
@@ -701,7 +699,7 @@ function _createGridType2(id) {
 		{name : 'categoryName', name : 'categoryName', editable:false, hidden:true},
 		{name: 'myac', width:40, fixed:true, sortable:false, resize:false, formatter:'actions', 
 			formatoptions:{editbutton:false, keys:true,
-				delOptions:{msg:'<spring:message code="board.msg.delete.confirm" />',
+				delOptions:{msg:'<spring:message code="jquery.board.msg.delete.confirm" />',
 					onclickSubmit:function(rp_ge, rowid){
 					$(gridId).delGridRow( rowid, {
 						reloadAfterSubmit:true,
@@ -802,8 +800,8 @@ $(document).ready(function() {
 		url: "<c:url value='/jqueryCategory.do?method=gridList' />",
 		mtype:'POST',
 		datatype : "json",
-		colNames : ['<spring:message code="category" /> <spring:message code="category.id" />','<spring:message code="category" /> <spring:message code="category.name" />', 
-		            '<spring:message code="category.desc" />', '<spring:message code="category.regDate" />'],
+		colNames : ['<spring:message code="jquery.category" /> <spring:message code="jquery.category.id" />','<spring:message code="jquery.category" /> <spring:message code="jquery.category.name" />', 
+		            '<spring:message code="jquery.category.desc" />', '<spring:message code="jquery.category.regDate" />'],
 		jsonReader: {repeatitems: false},
 		colModel : [ 
 		{key : true, name : 'categoryId', editable:false, hidden:true}, 
@@ -965,13 +963,12 @@ $(document).ready(function(){
 });
 </script>
 
-</head>
-<body>
-<div id="wrapper">
-	<!-- start of title-->
-	<div class="title_bar">
-		<div class="theme_switcher">
-			<label for="themeSwitcher"><spring:message code="jqueyr.theme.title" /></label>
+
+<div id="wrapper container">
+	<div class="cont_top">
+		<h2><spring:message code="jquery.title" /></h2>
+		<div class="theme_switcher search_list">
+			<label for="themeSwitcher"><spring:message code="jquery.theme.title" /></label>
 			<select id="themeSwitcher">
 				<option value="black-tie">black-tie</option>
 				<option value="blitzer">blitzer</option>
@@ -986,30 +983,15 @@ $(document).ready(function(){
 				<option value="ui-lightness">ui-lightness</option>
 			</select>
 		</div>
-		<div class="title01">
-			<h1><spring:message code="jquery.title" /></h1>
-		</div>
-	</div>
-	<!--end of title-->
-	
+   	</div>
+   	
 	<div id="body">
 		<div id="left">
 			<!-- begin of tree search -->
 			<div id="treeSearchForm">
 				<form method="post" id="searchForm" name="searchForm">
-	
-					<table border="0" cellspacing="0" cellpadding="0">
-						<tr>
-							<td>
-								<label for="searchKeyword"><spring:message code="jquery.search" /> : </label><input type="text" name="searchKeyword" id="searchKeyword" class="jstree_search_input" />
-							</td>
-							<td align="left" style="padding-left:5px;">
-								<a href="#" id="treeSearch"><img src="${ctx}/sample/images/btn_search.png" width="25" height="18" border="0" align="middle"/></a>
-							</td>
-	
-						</tr>
-					</table>
-				
+					<label for="searchKeyword"><spring:message code="jquery.search" /> : </label><input type="text" name="searchKeyword" id="searchKeyword" class="jstree_search_input" />
+					<a href="#" id="treeSearch"><img src="${ctx}/sample/images/btn_search_i.gif" alt="Search" /></a>
 				</form>
 			</div>
 			<!-- end of tree search -->
@@ -1044,16 +1026,16 @@ $(document).ready(function(){
 		<div id="right">
 			<div id="tabs">
 				<ul>
-					<li><a href="#tabs-0" nodeId="ROOT"><spring:message code="category" /></a></li>
+					<li><a href="#tabs-0" nodeId="ROOT"><spring:message code="jquery.category" /></a></li>
 				</ul>
 				<div id="tabs-0">
 					<div class="grid_searchForm">
 						<select id="grid_ROOT_searchCondition">
-							<option value="name"><spring:message code="board.title" /></option>
-							<option value="desc"><spring:message code="board.contents" /></option>
+							<option value="name"><spring:message code="jquery.board.title" /></option>
+							<option value="desc"><spring:message code="jquery.board.contents" /></option>
 						</select>
 						<input id="grid_ROOT_searchKeyword" maxlength="50"/>
-						<img id="grid_ROOT_btnSearch" class="btnSearch" width="25" height="18" border="0" align="middle" src="${ctx}/sample/images/btn_search.png">
+						<img id="grid_ROOT_btnSearch" class="btnSearch" width="25" height="18" border="0" align="middle" src="${ctx}/sample/images/btn_search_i.gif">
 					</div>
 					<form:form method="post" id="grid_ROOT_Form" name="grid_ROOTForm" onsubmit="javascript:return false;">
 						<!-- jqGrid -->
@@ -1073,39 +1055,44 @@ $(document).ready(function(){
 	</div>
 	
 </div>
+
 <!-- board form start -->
-<form:form id="dialog-form" name="dialog-form" title="Board Form">
+<form:form id="board-form" name="board-form" title="Board Form">
 	<fieldset>
 		<input type="hidden" name="postId" id="boardPostId">
 		<input type="hidden" name="regId" id="boardRegId">
 		<input type="hidden" name="regDate" id="boardRegDate">
-		<table summary="jquery" width="100%">
-			<tr>
-				<td><spring:message code="board.title" /></td>
-				<td><input type="text" name="title" id="boardTitle" class="dialog_text required" maxlength="25"></td>
-			</tr>
-			<tr>
-				<td><spring:message code="board.contents" /></td>
-				<td><textarea name="contents" id="boardContents" class="dialog_text required" maxlength="128"></textarea></td>
-			</tr>
-			<tr>
-				<td><label for="deploy"><spring:message code="community" /></label></td>
-				<td>
-					<select name="communityId" id="community" class="selectbox">
-						<c:forEach var="comm" items="${communityList}">
-							<option value="${comm.communityId}"><c:out value="${comm.communityName}"></c:out></option>
-						</c:forEach>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td><label><spring:message code="board.attach" /></label></td>
-				<td>
-					<div id="uploadPane"></div>
-					<input type="hidden" name="refId" id="refId" value=""/>
-				</td>
-			</tr>
-		</table>
+		<div class="view">
+			<table summary="jquery" width="100%">
+				<tbody>
+					<tr>
+						<td><spring:message code="jquery.board.title" /></td>
+					<td><input type="text" name="title" id="boardTitle" class="dialog_text required" maxlength="25"></td>
+				</tr>
+				<tr>
+					<td><spring:message code="jquery.board.contents" /></td>
+					<td><textarea name="contents" id="boardContents" class="dialog_text required" maxlength="128"></textarea></td>
+				</tr>
+				<tr>
+					<td><label for="deploy"><spring:message code="jquery.community" /></label></td>
+					<td>
+						<select name="communityId" id="community" class="selectbox">
+							<c:forEach var="comm" items="${communityList}">
+								<option value="${comm.communityId}"><c:out value="${comm.communityName}"></c:out></option>
+							</c:forEach>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><label><spring:message code="jquery.board.attach" /></label></td>
+						<td>
+							<div id="uploadPane"></div>
+							<input type="hidden" name="refId" id="refId" value=""/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</fieldset>
 </form:form>
 <!-- board form end -->
@@ -1115,16 +1102,18 @@ $(document).ready(function(){
 	<fieldset>
 		<input type="hidden" name="categoryId" id="hidCategoryId"/>
 		<input type="hidden" name="regDate" id="hidRegDate">
-		<table summary="Create Category" width="100%">
-			<tr>
-				<td><spring:message code="category.name" /></td>
-				<td><input type="text" name="categoryName" id="txtCategoryName" class="dialog_text required" maxlength="25"></td>
-			</tr>
-			<tr>
-				<td><spring:message code="category.desc" /></td>
-				<td><textarea name="categoryDesc" id="txtCategoryDesc" class="dialog_text required" maxlength="25"></textarea></td>
-			</tr>
-		</table>
+		<div class="view">
+			<table summary="Create Category" width="100%">
+				<tr>
+					<td><spring:message code="jquery.category.name" /></td>
+					<td><input type="text" name="categoryName" id="txtCategoryName" class="dialog_text required" maxlength="25"></td>
+				</tr>
+				<tr>
+					<td><spring:message code="jquery.category.desc" /></td>
+					<td><textarea name="categoryDesc" id="txtCategoryDesc" class="dialog_text required" maxlength="25"></textarea></td>
+				</tr>
+			</table>
+		</div>
 	</fieldset>
 </form:form>
 <!-- category form end -->
@@ -1136,18 +1125,21 @@ $(document).ready(function(){
 		<input type="hidden" name="communityId" id="hidCommunityId"/>
 		<input type="hidden" name="regDate" id="hidCommunityRegDate">
 		<input type="hidden" name="regId" id="hidRegId">
-		<table summary="Create Community" width="100%">
-			<tr>
-				<td><spring:message code="community.name" /></td>
-				<td><input type="text" name="communityName" id="txtCommunityName" class="dialog_text required" maxlength="25"></td>
-			</tr>
-			<tr>
-				<td><spring:message code="community.desc" /></td>
-				<td><textarea name="communityDesc" id="txtCommunityDesc" class="dialog_text required" maxlength="128"></textarea></td>
-			</tr>
-		</table>
+		<div class="view">
+			<table summary="Create Community" width="100%">
+				<tr>
+					<td><spring:message code="jquery.community.name" /></td>
+					<td><input type="text" name="communityName" id="txtCommunityName" class="dialog_text required" maxlength="25"></td>
+				</tr>
+				<tr>
+					<td><spring:message code="jquery.community.desc" /></td>
+					<td><textarea name="communityDesc" id="txtCommunityDesc" class="dialog_text required" maxlength="128"></textarea></td>
+				</tr>
+			</table>
+		</div>
 	</fieldset>
 </form:form>
 <!-- community form end -->
-</body>
-</html>
+
+    <hr />
+<%@ include file="/sample/common/bottom.jsp"%>

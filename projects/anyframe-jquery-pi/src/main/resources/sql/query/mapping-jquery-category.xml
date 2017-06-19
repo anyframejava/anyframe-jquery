@@ -77,7 +77,7 @@
 				<!--Velocity-Support-dynamicFindJqueryCategoryList-END-->
 				<!--jquery-findJqueryCategoryList-END-->
 			</statement>
-			<result class="org.anyframe.plugin.jquery.domain.Category"/>				
+			<result class="org.anyframe.plugin.jquery.domain.JqueryCategory"/>				
 		</query>
 		<query id="findJqueryCategoryByPk" isDynamic="true">
 			<statement>
@@ -89,7 +89,7 @@
 				FROM JQUERY_CATEGORY
 				WHERE CATEGORY_ID = :vo.categoryId
 			</statement>
-			<result class="org.anyframe.plugin.jquery.domain.Category"/>				
+			<result class="org.anyframe.plugin.jquery.domain.JqueryCategory"/>				
 		</query>
   	</queries>
 </queryservice>
