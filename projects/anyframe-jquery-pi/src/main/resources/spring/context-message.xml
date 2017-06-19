@@ -8,7 +8,9 @@
 				<value>classpath:message/message-generation</value>
 				<value>classpath:message/message-moviefinder</value>
 				<value>classpath:message/message-converter</value>
+				<!--jquery-configuration-START-->
 				<value>classpath:message/message-jquery</value>
+				<!--jquery-configuration-END-->	
 			</list>
 		</property>
 		<property name="defaultEncoding">

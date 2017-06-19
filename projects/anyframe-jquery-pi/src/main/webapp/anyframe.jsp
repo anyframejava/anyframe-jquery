@@ -24,7 +24,7 @@
                     	<ul>
 							<!--Add new menu here-->
 							<!--jquery-menu-START-->
-                            <li><a href="<c:url value='/jqueryBoard.do?method=tabMain'/>">jQuery 1.0.1</a></li>
+                            <li><a href="<c:url value='/jqueryBoard.do?method=tabMain'/>">jQuery 1.0.2</a></li>
 							<!--jquery-menu-END-->
                         </ul>
                     </td>
