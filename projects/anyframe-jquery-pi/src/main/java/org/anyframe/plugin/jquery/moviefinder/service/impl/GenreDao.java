@@ -39,23 +39,24 @@ public class GenreDao extends QueryServiceDaoSupport {
 	}
 
 	public List<Genre> getDropDownGenreList() {
-		return super.getQueryService().find("findDropDownJqueryGenreList",
-				new Object[] {});
+		List<Genre> results = super.getQueryService().find("findDropDownJqueryGenreList", new Object[] {});
+		return results;
 	}
 
 	public List<Genre> getGenreList(MovieSearchVO searchVO) {
-		return super.findList("findJqueryGenreList", searchVO);
+		List<Genre> results = this.findList("findJqueryGenreList", searchVO);
+		return results;
 	}
 
 	public List<String> getGenreNameList(String keyword) {
-		return super.getQueryService().find("findGenreName",
-				new Object[] { new Object[] { "keyword", keyword } });
+		List<String> results = this.getQueryService().find("findGenreName", new Object[] { new Object[] { "keyword", keyword } });
+		return results;
 	}
 
 	public Genre getGenre(String genreId) {
 		Genre genre = new Genre();
 		genre.setGenreId(genreId);
-		return super.findByPk("findJqueryGenreByPk", genre);
+		return findByPk("findJqueryGenreByPk", genre);
 	}
 
 }

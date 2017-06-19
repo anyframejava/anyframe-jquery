@@ -43,26 +43,26 @@ public class MovieController {
 
 	@RequestMapping(params = "method=create")
 	public String create(Movie movie) throws Exception {
-		movieService.create(movie);
+		this.movieService.create(movie);
 		return "jsonView";
 	}
 
 	@RequestMapping(params = "method=get")
 	public String get(@RequestParam("movieId") String movieId, Model model) throws Exception {
-		Movie movie = movieService.get(movieId);
+		Movie movie = this.movieService.get(movieId);
 		model.addAttribute("movie", movie);
 		return "jsonView";
 	}
 	
 	@RequestMapping(params = "method=removeMovieList")
 	public String remove(@RequestParam("ids[]") String[] ids, Model model) throws Exception {
-		movieService.removeMovieList(ids);
+		this.movieService.removeMovieList(ids);
 		return "jsonView";
 	}
 
 	@RequestMapping(params = "method=update")
 	public String update(Movie movie) throws Exception {
-		movieService.update(movie);
+		this.movieService.update(movie);
 		return "jsonView";
 	}
 

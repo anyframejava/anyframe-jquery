@@ -21,9 +21,6 @@ $(document).ready(function(){
 					<imageobject>
 						<imagedata fileref="../image/jquery/jqgrid001.jpg"	align="center" />
 					</imageobject>
-					<textobject>
-						<phrase>Redmond(기본테마)</phrase>
-					</textobject>
 				</mediaobject>
 			</listitem>
 			<listitem>
@@ -33,9 +30,6 @@ $(document).ready(function(){
 					<imageobject>
 						<imagedata fileref="../image/jquery/theme-blitzer.jpg"	align="center" />
 					</imageobject>
-					<textobject>
-						<phrase>Blitzer 테마</phrase>
-					</textobject>
 				</mediaobject>
 			</listitem>
 			<listitem>
@@ -45,9 +39,6 @@ $(document).ready(function(){
 					<imageobject>
 						<imagedata fileref="../image/jquery/theme-south-street.jpg"	align="center" />
 					</imageobject>
-					<textobject>
-						<phrase>South Street 테마</phrase>
-					</textobject>
 				</mediaobject>
 			</listitem>
 	 	</itemizedlist>
